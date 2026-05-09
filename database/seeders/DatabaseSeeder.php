@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Car;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ProjectsSeeder::class,
+            CarSeeder::class
         ]);
     }
 }

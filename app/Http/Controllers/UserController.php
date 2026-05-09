@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\Projects;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $projects = Project::with('users')->get();
+        $projects = Project::with(['users.cars'])->get();
 
         return view('index', compact('projects'));
     }

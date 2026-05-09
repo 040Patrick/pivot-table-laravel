@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Project;
-use App\Models\Projects;
 use App\Models\User;
-use App\Models\Users;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,18 +12,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_user', function (Blueprint $table) {
+        Schema::create('cars', function (Blueprint $table) {
             // Ids
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Project::class)->constrained()->cascadeOnDelete();
-
             // String
             $table->string('name');
-            // Unique
-            $table->unique(['user_id', 'project_id']);
-
-            // Date
+            $table->string('modelo')->nullable();
+            $table->string('ano')->nullable();
+            // Soft
+            $table->softDeletes();
+            // Date\
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project_user');
+        Schema::dropIfExists('cars');
     }
 };

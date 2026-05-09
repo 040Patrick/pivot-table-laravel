@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Project;
-use App\Models\User;
+use App\Models\Car;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-
-class ProjectsSeeder extends Seeder
+class CarSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Project::factory(5)->hasAttached(User::factory(3), ['name' => fake()->word() ])->create();
+        Car::factory()->count(5)->create();
     }
 }

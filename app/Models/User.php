@@ -24,6 +24,11 @@ class User extends Model
         return $this->belongsToMany(Project::class);
     }
 
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
     public function cars(): HasMany
     {
         return $this->hasMany(Car::class);

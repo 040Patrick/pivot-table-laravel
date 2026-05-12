@@ -23,7 +23,7 @@ class ProjectFactory extends Factory
         return [
 
             // Strings
-            'name' => $this->faker->word(),
+            'name' => $this->faker->randomElement(['Lua', 'Artemis', 'Apolo', 'Oceano', 'Vasco da gama']),
             'description' => $this->faker->sentence(),
 
             // Enum

@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\Role;
 use App\Models\User;
+use Database\Factories\ProjectFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Psy\ProjectTrust;
 
 class ProjectsSeeder extends Seeder
 {
@@ -15,6 +17,10 @@ class ProjectsSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::factory(5)->hasAttached(User::factory(3), ['name' => fake()->word() ])->create();
+        $users = User::all();
+
+        Project::factory(5)->create()->each( function ($project) use ($users) {
+            $project->users()->attach($users->random()->id);
+        });
     }
 }

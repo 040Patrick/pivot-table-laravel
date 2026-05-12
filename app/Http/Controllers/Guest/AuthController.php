@@ -1,12 +1,15 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AuthController extends Controller
 {
@@ -17,13 +20,13 @@ class AuthController extends Controller
     }
 
     //** @LOGIN METHOD */
-    public function store(LoginRequest $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
 
         if(!Auth::attempt($credentials)) 
         {
-            return back()->withErrors(['email' => 'Invalid credentials']);
+            return back()->withErrors(['credentials' => 'Invalid credentials']);
         }
 
         return redirect()->route('user.index')->with('success', 'You have been successfully logged in');
@@ -37,6 +40,6 @@ class AuthController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect()->route('auth.login');
+        //return redirect()->route('auth.logout');
     }
 }

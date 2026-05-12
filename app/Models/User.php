@@ -4,21 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Override;
 
-class User extends Model 
+class User extends Authenticatable 
 {
     /** @use HasFactory */
     use HasFactory;
-
+    
+    //** @fillable fields */
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
+    // RELANTIONSHIPS
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class);
@@ -32,5 +35,13 @@ class User extends Model
     public function cars(): HasMany
     {
         return $this->hasMany(Car::class);
+    }
+
+    // RULES 
+    public function casts(): array
+    {
+        return [
+            'password' => 'hashed'
+        ];
     }
 }

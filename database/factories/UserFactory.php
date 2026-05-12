@@ -24,12 +24,15 @@ class UserFactory extends Factory
             'Nicolas Jackson',
             'Pedro Raul', 
             'Henrique Dentudinho', 
-            'Fernando Mentiroso',
+            'Fernandolas pegador de mentira',
             'Mini ranhenta',
-            'Vini choradeira', 
+            'Vini jr', 
+            'Raphinha',
+            'Endrick',
+            'Spinelli',
             'Dembele Bola de ouro',
             'Maikao',
-            'Harry Kane injusticado',
+            'Harry Kane injustiçado',
             'Dick Vigarista', 
         ];
 
